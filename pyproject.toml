@@ -1,0 +1,27 @@
+[project]
+name = "study-pytorch"
+version = "0.1.0"
+description = "Add your description here"
+authors = [
+    { name = "wakabame", email = "wakabame89@gmail.com" }
+]
+dependencies = []
+readme = "README.md"
+requires-python = ">= 3.11.4"
+
+[project.scripts]
+hello = "study_pytorch:hello"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = []
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/study_pytorch"]
