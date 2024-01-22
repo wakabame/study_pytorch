@@ -21,3 +21,17 @@ repos:
           - python
         pass_filenames: false
         args: [.]
+    - repo: local
+      hooks:
+      - id: update requirements.txt for dependabot
+        name: update requirements.txt for dependabot
+        entry: bash -c 'sed "/-e/d" requirements.lock > .github/dependabot/requirements.txt'
+        language: system
+        require_serial: true
+    - repo: local
+      hooks:
+      - id: update requirements-dev.txt for dependabot
+        name: update requirements-dev.txt for dependabot
+        entry: bash -c 'sed "/-e/d" requirements-dev.lock > .github/dependabot/requirements-dev.txt'
+        language: system
+        require_serial: true
