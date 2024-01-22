@@ -28,6 +28,8 @@ dev-dependencies = [
     "mypy>=1.8.0",
     "ruff>=0.1.14",
     "pre-commit>=3.6.0",
+    "pandas-stubs>=2.1.4.231227",
+    "nptyping>=2.5.0",
 ]
 
 [tool.hatch.metadata]
@@ -35,3 +37,10 @@ allow-direct-references = true
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/study_pytorch"]
+
+[tool.mypy]
+disallow_untyped_defs = true
+disallow_untyped_calls = true
+strict_optional = true
+warn_unused_configs = true
+warn_unused_ignores = true
