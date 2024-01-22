@@ -52,7 +52,7 @@ jobs:
       #       run linter defined by pre-commit
       #----------------------------------------------
       - name: Run pre-commit
-        uses: pre-commit/action@v2.0.3
+        run: pre-commit run
       #----------------------------------------------
       #      commit lint diffs from pre-commit
       #----------------------------------------------
