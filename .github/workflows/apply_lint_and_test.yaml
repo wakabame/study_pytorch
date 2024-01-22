@@ -1,0 +1,63 @@
+name: Apply Lint and Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  apply_lint_and_test:
+    runs-on: ubuntu-latest
+    steps:
+      #----------------------------------------------
+      #       check-out repo and set-up python
+      #----------------------------------------------
+      - name: Check out repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 
+      #----------------------------------------------
+      #  -----  install & configure rye  -----
+      #----------------------------------------------
+      - name: Install Rye
+        uses: baptiste0928/cargo-install@v2
+        with:
+          crate: rye
+          git: https://github.com/mitsuhiko/rye
+          branch: main
+      #----------------------------------------------
+      #       load cached venv if cache exists
+      #----------------------------------------------
+      - name: Load cached venv
+        id: cached-rye-dependencies
+        uses: actions/cache@v3
+        with:
+          path: .venv
+          key: venv-${{ runner.os }}-${{ hashFiles('**/requirements-dev.lock') }}
+      #----------------------------------------------
+      # install dependencies if cache does not exist
+      #----------------------------------------------
+      - name: Install dependencies
+        if: steps.cached-rye-dependencies.outputs.cache-hit != 'true'
+        run: rye sync --no-lock
+      #----------------------------------------------
+      #       run linter defined by pre-commit
+      #----------------------------------------------
+      - name: Run pre-commit
+        uses: pre-commit/action@v2.0.3
+      #----------------------------------------------
+      #      commit lint diffs from pre-commit
+      #----------------------------------------------
+      - name: Auto Commit
+        if: ${{ always() }}
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Apply Code Formatter Change
