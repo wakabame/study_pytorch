@@ -1,4 +1,6 @@
-nohup.out
 .venv
+__pycache__
+.ipynb_checkpoints
+nohup.out
 .ruff_cache
 .mypy_cache
