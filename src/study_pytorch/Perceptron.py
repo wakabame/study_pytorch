@@ -21,7 +21,7 @@ class Perceptron:
 
         for _ in range(self.n_iter):
             errors = 0
-            for xi, target in zip(X, y):
+            for xi, target in zip(X, y, strict=True):
                 update = self.eta * (target - self.predict(xi))
                 self.w_ += update * xi
                 self.b_ += update
