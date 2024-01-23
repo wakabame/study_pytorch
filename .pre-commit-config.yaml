@@ -3,9 +3,9 @@ default_language_version:
 repos:
     - repo: local
       hooks:
-      - id: ruff format
-        name: ruff format
-        entry: ruff format
+      - id: ruff --fix
+        name: ruff --fix
+        entry: ruff --fix
         language: system
         types_or:
           - python
