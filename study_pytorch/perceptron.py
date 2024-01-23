@@ -5,7 +5,10 @@ import pandas as pd
 from nptyping import Float, NDArray
 
 
-class Perceptron:
+from study_pytorch.classifier import Classifier
+
+
+class Perceptron(Classifier):
     def __init__(self, eta: float = 0.01, n_iter: int = 50, random_state: int = 1) -> None:
         self.eta = eta
         self.n_iter = n_iter

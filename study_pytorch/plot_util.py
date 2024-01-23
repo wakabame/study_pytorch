@@ -5,9 +5,11 @@ from nptyping import Float, NDArray
 from matplotlib.colors import ListedColormap
 import matplotlib.pyplot as plt
 
+from study_pytorch.classifier import Classifier
+
 
 def plot_decision_regions(
-    X: NDArray[Any, Float], y: NDArray[Any, Float], classifier: Any, resolution: float = 0.02
+    X: NDArray[Any, Float], y: NDArray[Any, Float], classifier: Classifier, resolution: float = 0.02
 ) -> None:
     makers = ("o", "s", "^", "v", "<")
     colors = ("red", "blue", "lightgreen", "gray", "cyan")
