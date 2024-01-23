@@ -13,3 +13,10 @@
 ## ライセンス
 
 自分の学習のためのコードなので未定義
+
+## 学習の仕方
+
+``` sh
+source .venv/bin/activate
+jupyter notebook
+```
