@@ -1,7 +1,6 @@
 from typing import Any, Self
 
 import numpy as np
-import pandas as pd
 from nptyping import Float, NDArray
 
 
@@ -34,13 +33,13 @@ class AdalineGD(Classifier):
         self.n_iter = n_iter
         self.random_state = random_state
 
-    def fit(self, X: NDArray[Any, Float], y: pd.Series) -> Self:
+    def fit(self, X: NDArray[Any, Float], y: NDArray[Any, Float]) -> Self:
         """訓練データに適合させる
 
         Parameters
         ----------
         X : NDArray[Any, Float]
-        y : pd.Series
+        y : NDArray[Any, Float]
 
         Returns
         -------

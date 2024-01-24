@@ -1,7 +1,6 @@
 from typing import Any, Self
 
 import numpy as np
-import pandas as pd
 from nptyping import Float, NDArray
 
 
@@ -14,7 +13,7 @@ class Perceptron(Classifier):
         self.n_iter = n_iter
         self.random_state = random_state
 
-    def fit(self, X: NDArray[Any, Float], y: pd.Series) -> Self:
+    def fit(self, X: NDArray[Any, Float], y: NDArray[Any, Float]) -> Self:
         rgen = np.random.default_rng(self.random_state)
         self.w_ = rgen.normal(loc=0.0, scale=0.01, size=X.shape[1])
         self.b_ = np.float_(0.0)
