@@ -3,6 +3,13 @@ default_language_version:
 repos:
     - repo: local
       hooks:
+      - id: black
+        name: black
+        entry: black
+        language: system
+        types_or:
+          - python
+        require_serial: true
       - id: ruff --fix
         name: ruff --fix
         entry: ruff --fix
