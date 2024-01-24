@@ -3,8 +3,8 @@ from typing import Any, Self
 
 from nptyping import Float, NDArray
 
-class Classifier(ABC):
 
+class Classifier(ABC):
     @abstractmethod
     def fit(self, X: NDArray[Any, Float], y: NDArray[Any, Float]) -> Self:
         ...
