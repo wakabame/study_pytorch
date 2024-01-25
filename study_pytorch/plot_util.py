@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Callable
 
 import numpy as np
 from nptyping import Float, NDArray, Bool
@@ -60,3 +60,20 @@ def plot_decision_regions(
             s=100,
             label="Test set",
         )
+
+
+def easy_plot(plot_target: Callable) -> None:
+    """グラフを描画します"""
+    z = np.arange(-7, 7, 0.1)
+    sigma_z = plot_target(z)
+
+    plt.plot(z, sigma_z)
+    plt.axvline(0.0, color="k")  # 水r直線を追加
+    plt.xlabel("x")
+    plt.ylabel("f(x)")
+
+    ax = plt.gca()
+    ax.yaxis.grid(True)
+
+    plt.tight_layout()
+    plt.show()
