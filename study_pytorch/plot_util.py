@@ -1,7 +1,7 @@
 from typing import Any
 
 import numpy as np
-from nptyping import Float, NDArray
+from nptyping import Float, NDArray, Bool
 from matplotlib.colors import ListedColormap
 import matplotlib.pyplot as plt
 
@@ -9,7 +9,11 @@ from study_pytorch.classifier import Classifier
 
 
 def plot_decision_regions(
-    X: NDArray[Any, Float], y: NDArray[Any, Float], classifier: Classifier, resolution: float = 0.02
+    X: NDArray[Any, Float],
+    y: NDArray[Any, Float],
+    classifier: Classifier,
+    test_idx: NDArray[Any, Bool] | None = None,
+    resolution: float = 0.02,
 ) -> None:
     makers = ("o", "s", "^", "v", "<")
     colors = ("red", "blue", "lightgreen", "gray", "cyan")
@@ -39,4 +43,20 @@ def plot_decision_regions(
             marker=makers[idx],
             label=f"Class: {cl}",
             edgecolor="black",
+        )
+
+    # テストデータ点を目立たせる（点を〇で表示）
+    if test_idx:
+        # 全てのデータ点をプロット
+        X_test, _ = X[test_idx, :], y[test_idx]
+        plt.scatter(
+            X_test[:, 0],
+            X_test[:, 1],
+            c="none",
+            edgecolor="black",
+            alpha=1.0,
+            linewidths=1,
+            marker="o",
+            s=100,
+            label="Test set",
         )
