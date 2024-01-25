@@ -7,15 +7,13 @@ repos:
         name: black
         entry: black
         language: system
-        types_or:
-          - python
+        types_or: [python, jupyter]
         require_serial: true
       - id: ruff --fix
         name: ruff --fix
         entry: ruff --fix
         language: system
-        types_or:
-          - python
+        types_or: [python, jupyter]
         pass_filenames: false
         args: [.]
     - repo: local
