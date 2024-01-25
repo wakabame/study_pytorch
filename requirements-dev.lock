@@ -37,6 +37,7 @@ fonttools==4.47.2
 fqdn==1.5.1
 identify==2.5.33
 idna==3.6
+iniconfig==2.0.0
 ipykernel==6.29.0
 ipython==8.20.0
 isoduration==20.11.0
@@ -82,6 +83,7 @@ pathspec==0.12.1
 pexpect==4.9.0
 pillow==10.2.0
 platformdirs==4.1.0
+pluggy==1.4.0
 pre-commit==3.6.0
 prometheus-client==0.19.0
 prompt-toolkit==3.0.43
@@ -91,6 +93,7 @@ pure-eval==0.2.2
 pycparser==2.21
 pygments==2.17.2
 pyparsing==3.1.1
+pytest==7.4.4
 python-dateutil==2.8.2
 python-json-logger==2.0.7
 pytz==2023.3.post1
