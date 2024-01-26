@@ -14,6 +14,8 @@ def plot_decision_regions(
     classifier: Classifier,
     test_idx: NDArray[Any, Bool] | None = None,
     resolution: float = 0.02,
+    x_label: str | None = None,
+    y_label: str | None = None,
 ) -> None:
     makers = ("o", "s", "^", "v", "<")
     colors = ("red", "blue", "lightgreen", "gray", "cyan")
@@ -60,6 +62,14 @@ def plot_decision_regions(
             s=100,
             label="Test set",
         )
+
+    if x_label is not None:
+        plt.xlabel(x_label)
+    if y_label is not None:
+        plt.ylabel(y_label)
+    plt.legend(loc="upper left")
+    plt.tight_layout()
+    plt.show()
 
 
 def easy_plot(plot_target: Callable) -> None:
