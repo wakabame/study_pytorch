@@ -54,26 +54,22 @@ class AdalineGD(Classifier):
         for _ in range(self.n_iter):
             net_input = self.net_input(X)
             output = self.activation(net_input)
-            errors = y - output
 
             self._update_weights(X, y, output)
             self.losses_.append(self._loss(X, y, output))
 
         return self
 
-    def _update_weights(self, X: NDArray[Any, Float], y: NDArray[Any, Float], output: NDArray[Any, Float]) -> None:  # type: ignore[no-untyped-def]
+    def _update_weights(self, X: NDArray[Any, Float], y: NDArray[Any, Float], output: NDArray[Any, Float]) -> None:
         """ADALINE の学習規則を使って重みを更新"""
         errors = y - output
         self.w_ += self.eta * X.T.dot(errors) / X.shape[0]
         self.b_ += self.eta * errors.mean()
 
-
-    def _loss(self, X: NDArray[Any, Float], y: NDArray[Any, Float], output: NDArray[Any, Float]) -> float:
-        """二乗誤差平均 MSE で算出する
-        """
+    def _loss(self, X: NDArray[Any, Float], y: NDArray[Any, Float], output: NDArray[Any, Float]) -> np.float_:
+        """二乗誤差平均 MSE で算出する"""
         errors = y - output
         return (errors**2).mean()
-
 
     def net_input(self, X: NDArray[Any, Float]) -> NDArray[Any, Float]:
         return np.dot(X, self.w_) + self.b_
@@ -136,7 +132,7 @@ class AdalineSGD(AdalineGD):
             if self.shuffle:
                 X, y = self._shuffle(X, y)
             # 各訓練データの損失値を格納するリストを作成
-            losses: list[float] = []
+            losses: list[np.float_] = []
             for xi, target in zip(X, y, strict=True):
                 # 特徴量 xi と目的変数 y を使った重みの更新と損失値の計算
                 losses.append(self._update_weights(xi, target))
@@ -175,7 +171,7 @@ class AdalineSGD(AdalineGD):
         self.b_ = np.float_(0.0)
         self.w_initialized = True
 
-    def _update_weights(self, xi, target) -> float:  # type: ignore[no-untyped-def]
+    def _update_weights(self, xi: Any, target: Any) -> np.float_:  # type: ignore[override]
         """ADALINE の学習規則を使って重みを更新"""
         output = self.activation(self.net_input(xi))
         error = target - output
@@ -183,3 +179,39 @@ class AdalineSGD(AdalineGD):
         self.b_ += self.eta * error
         loss = error**2
         return loss
+
+
+class LoggisticRegressionGD(AdalineGD):
+    """勾配降下法に基づくロジスティック回帰分類器
+    ADALINEとの比較のため, 差がある要素についてオーバーライドして実装する
+
+    Parameters
+    ----------
+    eta : float
+        学習率 (0.0 より大きく 1.0 以下の値)
+    n_iter : int
+        訓練データの訓練回数
+    random_state : int
+        重みを初期化するための乱数シード
+
+    Attribute
+    ----------
+    w_ : 1次元配列
+        適合後の重み
+    b_ : スカラー
+        適合後のバイアス
+    losses_ : リスト
+        各エポックでの MSE 誤差関数の値
+    """
+
+    def activation(self, z: NDArray[Any, Float]) -> NDArray[Any, Float]:
+        """ロジスティック回帰では活性化関数はシグモイド関数"""
+        return 1.0 / (1.0 + np.exp(-np.clip(z, -250, 250)))
+
+    def _update_weights(self, X: NDArray[Any, Float], y: NDArray[Any, Float], output: NDArray[Any, Float]) -> None:
+        """重みの更新は ADALINE と一致する"""
+        super()._update_weights(X, y, output)
+
+    def _loss(self, X: NDArray[Any, Float], y: NDArray[Any, Float], output: NDArray[Any, Float]) -> np.float_:
+        """損失関数は対数尤度関数から得られるもの"""
+        return (-y.dot(np.log(output)) - (1 - y).dot(np.log(1 - output))) / X.shape[0]
