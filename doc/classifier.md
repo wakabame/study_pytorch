@@ -19,11 +19,11 @@ $$
 
 関数 $\sigma: \mathbb{R} \rightarrow \lbrace 0, 1 \rbrace$ を
 $$
-\begin{align*}
+\begin{aligned}
 \sigma(z) = \begin{cases} 1, & \text{if} & z\ge 0 \cr
 0, & \text{if} & z < 0
 \end{cases}
-\end{align*}
+\end{aligned}
 $$
 により定める((これをパーセプトロンの決定関数と呼ぶ)).
 
@@ -45,11 +45,11 @@ $$
 
     任意の $t=1,2,3,\cdots$ について,
     $$
-    \begin{align*}
+    \begin{aligned}
     \hat{y}_t &= \sigma(\langle x, w_{t-1}\rangle + b_{t-1}),\cr
     w_{t}^j &= w_{t-1}^j +\eta (y_t - \hat{y}_t)x_t^j, \quad\text{for}\quad  j=1,2,\cdots ,m,\cr
     b_{t} &= b_{t-1} + \eta(y_t-\hat{y}_t).
-    \end{align*}
+    \end{aligned}
     $$
 3. 十分大きな $t=T$ で打ち切り, $w=w_T$, $b=b_T$ と置く
 
@@ -78,11 +78,11 @@ $$
 
     任意の $t=1,2,3,\cdots$ について,
     $$
-    \begin{align*}
+    \begin{aligned}
     z_{n, t-1} &= \langle x_n, w_{t-1}\rangle +b_{t-1}, \cr
     w_{t}^j &= w_{t-1}^j +\eta \dfrac{1}{N}\sum_{n=1}^N(y_n - z_{n, t-1})x_n^j, \quad\text{for}\quad  j=1,2,\cdots ,m,\cr
     b_{t} &= b_{t-1} +\eta \dfrac{1}{N}\sum_{n=1}^N(y_n - z_{n, t-1}).
-    \end{align*}
+    \end{aligned}
     $$
 3. 十分大きな $t=T$ で打ち切り, $w=w_T$, $b=b_T$ と置く
 
@@ -98,10 +98,10 @@ $$
 としたときの勾配降下法となっている. 実際, 勾配降下法によると,
 
 $$
-\begin{align*}
+\begin{aligned}
 w_{t}^j &= w_{t-1}^j - \eta \dfrac{\partial L}{\partial w^j}({w_{t-1},b_{t-1}}), \quad\text{for}\quad  j=1,2,\cdots ,m,\cr
 b_{t} &= b_{t-1} - \eta \dfrac{\partial L}{\partial b}({w_{t-1},b_{t-1}}).
-\end{align*}
+\end{aligned}
 $$
 
 による更新が求められ, 微分計算を行うことによりアルゴリズムと一致している.
