@@ -56,12 +56,24 @@ class AdalineGD(Classifier):
             output = self.activation(net_input)
             errors = y - output
 
-            self.w_ += self.eta * X.T.dot(errors) / X.shape[0]
-            self.b_ += self.eta * errors.mean()
-            loss = (errors**2).mean()
-            self.losses_.append(loss)
+            self._update_weights(X, y, output)
+            self.losses_.append(self._loss(X, y, output))
 
         return self
+
+    def _update_weights(self, X: NDArray[Any, Float], y: NDArray[Any, Float], output: NDArray[Any, Float]) -> None:  # type: ignore[no-untyped-def]
+        """ADALINE の学習規則を使って重みを更新"""
+        errors = y - output
+        self.w_ += self.eta * X.T.dot(errors) / X.shape[0]
+        self.b_ += self.eta * errors.mean()
+
+
+    def _loss(self, X: NDArray[Any, Float], y: NDArray[Any, Float], output: NDArray[Any, Float]) -> float:
+        """二乗誤差平均 MSE で算出する
+        """
+        errors = y - output
+        return (errors**2).mean()
+
 
     def net_input(self, X: NDArray[Any, Float]) -> NDArray[Any, Float]:
         return np.dot(X, self.w_) + self.b_
