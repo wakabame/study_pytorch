@@ -30,13 +30,13 @@ repos:
       hooks:
       - id: update requirements.txt for dependabot
         name: update requirements.txt for dependabot
-        entry: bash -c 'sed "/-e/d" requirements.lock > .github/dependabot/requirements.txt'
+        entry: bash -c 'sed -e "/-e/d" -e "/cpu/s/$/ --extra-index-url https:\/\/download.pytorch.org\/whl\/cpu/g" requirements.lock > .github/dependabot/requirements.txt'
         language: system
         require_serial: true
     - repo: local
       hooks:
       - id: update requirements-dev.txt for dependabot
         name: update requirements-dev.txt for dependabot
-        entry: bash -c 'sed "/-e/d" requirements-dev.lock > .github/dependabot/requirements-dev.txt'
+        entry: bash -c 'sed -e "/-e/d" -e "/cpu/s/$/ --extra-index-url https:\/\/download.pytorch.org\/whl\/cpu/g" requirements-dev.lock > .github/dependabot/requirements-dev.txt'
         language: system
         require_serial: true
