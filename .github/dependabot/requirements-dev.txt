@@ -116,7 +116,7 @@ terminado==0.18.0
 threadpoolctl==3.2.0
 tinycss2==1.2.1
 tokenize-rt==5.2.0
-torch==2.1.2+cpu --extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.1.2
 tornado==6.4
 traitlets==5.14.1
 types-python-dateutil==2.8.19.20240106
