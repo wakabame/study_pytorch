@@ -23,9 +23,14 @@ jupyter notebook
 
 ## CelabA データのダウンロード
 
+待てば大体大丈夫。ダウンロードがどうしてもうまくいかないとき
+
 ```0B7EVK8r0v71pZjFTYXZWM3FlRnM
 FILE_ID=0B7EVK8r0v71pZjFTYXZWM3FlRnM
 FILE_NAME=img_align_celeba.zip
 html=`curl -c ./cookie -s -L "https://drive.google.com/uc?export=download&id=${FILE_ID}"`
 curl -Lb ./cookie "https://drive.google.com/uc?export=download&`echo ${html}|grep -Po '(confirm=[a-zA-Z0-9\-_]+)'`&id=${FILE_ID}" -o celeba/${FILE_NAME}
+cd celeba
+unzip $FILE_NAME
+cd -
 ```
