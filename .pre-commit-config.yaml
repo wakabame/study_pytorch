@@ -45,6 +45,6 @@ repos:
       hooks:
       - id: update requirements-dev.txt for colaboratory
         name: update requirements-dev.txt for dependabot
-        entry: bash -c 'sed -e "/^-e/d" -e "/^ipython/d" -e "/^ipykernel/d" -e "/^tornado/d" -e "/^prompt-toolkit/d" -e "/^pyzmq/d" -e "s/\+cpu/\+cu121/" -e "s/setuptools/# setuptools/" requirements-dev.lock > requirements-colab.txt'
+        entry: bash -c 'sed -e "/^-e/d" -e "s/\+cpu/\+cu121/" -e "s/setuptools/# setuptools/" requirements.lock > requirements-colab.txt'
         language: system
         require_serial: true
