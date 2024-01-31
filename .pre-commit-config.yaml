@@ -30,6 +30,7 @@ repos:
       hooks:
       - id: update requirements.txt for dependabot
         name: update requirements.txt for dependabot
+        entry: bash -c 'sed -e "/^-e/d" -e "s/\+cpu//" -e "s/setuptools/# setuptools/" requirements.lock > .github/dependabot/requirements.txt'
         entry: bash -c 'sed -e "/-e/d" -e "s/\+cpu//" requirements.lock > .github/dependabot/requirements.txt'
         language: system
         require_serial: true
@@ -37,6 +38,6 @@ repos:
       hooks:
       - id: update requirements-dev.txt for dependabot
         name: update requirements-dev.txt for dependabot
-        entry: bash -c 'sed -e "/-e/d" -e "s/\+cpu//" requirements-dev.lock > .github/dependabot/requirements-dev.txt'
+        entry: bash -c 'sed -e "/^-e/d" -e "s/\+cpu//"  -e "s/setuptools/# setuptools/" requirements-dev.lock > .github/dependabot/requirements-dev.txt'
         language: system
         require_serial: true
