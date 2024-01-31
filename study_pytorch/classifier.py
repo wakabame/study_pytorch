@@ -1,14 +1,17 @@
 from abc import ABC, abstractmethod
-from typing import Any, Self
+from typing import Any
+from typing import TypeVar
 
 from nptyping import Float, NDArray
+
+Self = TypeVar("Self", bound="Classifier")
 
 
 class Classifier(ABC):
     @abstractmethod
-    def fit(self, X: NDArray[Any, Float], y: NDArray[Any, Float]) -> Self:
+    def fit(self: Self, X: NDArray[Any, Float], y: NDArray[Any, Float]) -> Self:
         ...
 
     @abstractmethod
-    def predict(self, X: NDArray[Any, Float]) -> NDArray[Any, Float]:
+    def predict(self: Self, X: NDArray[Any, Float]) -> NDArray[Any, Float]:
         ...

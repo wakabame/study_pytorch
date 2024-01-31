@@ -1,10 +1,13 @@
-from typing import Any, Self
-
+from typing import Any
+from typing import TypeVar
 import numpy as np
 from nptyping import Float, NDArray
 
 
 from study_pytorch.classifier import Classifier
+
+
+Self = TypeVar("Self", bound="Classifier")
 
 
 class AdalineGD(Classifier):
@@ -34,7 +37,7 @@ class AdalineGD(Classifier):
         self.n_iter = n_iter
         self.random_state = random_state
 
-    def fit(self, X: NDArray[Any, Float], y: NDArray[Any, Float]) -> Self:
+    def fit(self: Self, X: NDArray[Any, Float], y: NDArray[Any, Float]) -> Self:
         """訓練データに適合させる
 
         Parameters
@@ -113,7 +116,7 @@ class AdalineSGD(AdalineGD):
         self.shuffle = shuffle
         self.rgen = np.random.default_rng(self.random_state)
 
-    def fit(self, X: NDArray[Any, Float], y: NDArray[Any, Float]) -> Self:
+    def fit(self: Self, X: NDArray[Any, Float], y: NDArray[Any, Float]) -> Self:
         """訓練データに適合させる
 
         Parameters
@@ -143,7 +146,7 @@ class AdalineSGD(AdalineGD):
 
         return self
 
-    def partial_fit(self, X: NDArray[Any, Float], y: NDArray[Any, Float]) -> Self:
+    def partial_fit(self: Self, X: NDArray[Any, Float], y: NDArray[Any, Float]) -> Self:
         """重みを再初期化することなく訓練データに適合させる"""
         if not self.w_initialized:
             self._initialize_weights(X.shape[1])
