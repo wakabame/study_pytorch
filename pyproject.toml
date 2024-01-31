@@ -17,7 +17,7 @@ dependencies = [
     "torchvision==0.16.2+cpu",
 ]
 readme = "README.md"
-requires-python = ">= 3.10, < 3.11"
+requires-python = "== 3.10.12"
 
 [project.scripts]
 hello = "study_pytorch:hello"

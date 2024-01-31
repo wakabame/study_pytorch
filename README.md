@@ -51,3 +51,10 @@ GitHub から clone して, `requirements-colab.txt` により依存を入手し
 ```
 
 現在 colab 環境のバージョンは Python=3.10.12 なのでそれに合わせてこのリポジトリでも Python=3.10 を前提としている
+
+以下のコマンドで確認できる
+```
+!python --version  # Python 3.10.12
+!python -c 'import torch; print(torch.__version__)'  # 2.1.0+cu121
+!python -c 'import torchvision; print(torchvision.__version__)'  # 0.16.0+cu121
+```
