@@ -1,6 +1,7 @@
+from typing import Any
+
 import numpy as np
 from nptyping import Float, NDArray
-from typing import Any
 
 from study_pytorch.plot_util import easy_plot
 

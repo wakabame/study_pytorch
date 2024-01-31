@@ -1,15 +1,11 @@
-from typing import Any
-from typing import TypeVar
-
-from nptyping import Float, NDArray
-
+from typing import Any, TypeVar
 
 import numpy as np
+from nptyping import Float, NDArray
 
 from study_pytorch.classifier import Classifier
 
-
-Self = TypeVar("Self", bound="Classifier")
+Self = TypeVar("Self", bound="Perceptron")
 
 
 class Perceptron(Classifier):

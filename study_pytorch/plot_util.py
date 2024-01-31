@@ -1,9 +1,9 @@
 from typing import Any, Callable
 
-import numpy as np
-from nptyping import Float, NDArray, Bool
-from matplotlib.colors import ListedColormap
 import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib.colors import ListedColormap
+from nptyping import Bool, Float, NDArray
 
 from study_pytorch.classifier import Classifier
 
