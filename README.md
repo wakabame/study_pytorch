@@ -34,3 +34,20 @@ cd celeba
 unzip $FILE_NAME
 cd -
 ```
+
+## collaboratory でライブラリとして実行する
+
+GPU を無料で使える colab 環境を利用することができる
+GitHub から clone して, `requirements-colab.txt` により依存を入手して使用することができる
+
+```
+!git clone https://github.com/wakabame/study_pytorch.git
+# 処理とは関係ないファイルはすべて削除する
+!mv ./study_pytorch ./study_pytorch_
+!mv ./study_pytorch_/study_pytorch .
+!mv ./study_pytorch_/requirements-colab.txt .
+!rm -rf ./study_pytorch_
+!pip install -r requirements-colab.txt
+```
+
+現在 colab 環境のバージョンは Python=3.10.12 なのでそれに合わせてこのリポジトリでも Python=3.10 を前提としている
