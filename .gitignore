@@ -5,3 +5,5 @@ nohup.out
 .ruff_cache
 .mypy_cache
 celeba/
+*.pt
+*.pth
