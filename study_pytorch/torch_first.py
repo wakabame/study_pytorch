@@ -18,8 +18,8 @@ z = w * x + b
 loss = (y - z).pow(2).sum()
 loss.backward()  # type: ignore[no-untyped-call]
 
-print(f"dL/dw by torch: {w.grad:.6f}")
-print(f"dL/db by torch: {b.grad:.6f}")
+print(f"dL/dw by torch: {w.grad=:.6f}")
+print(f"dL/db by torch: {b.grad=:.6f}")
 
-print(f"dL/dw by hand: {(2 * x * (w*x+b-y)).item():.6f}")
-print(f"dL/dw by hand: {(2 * (w*x+b-y)).item():.6f}")
+print(f"dL/dw by hand: 2x(wx+b-y)={(2 * x * (w*x+b-y)).item():.6f}")
+print(f"dL/dw by hand: 2(wx+b-y)={(2 * (w*x+b-y)).item():.6f}")
