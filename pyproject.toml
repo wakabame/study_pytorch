@@ -15,6 +15,7 @@ dependencies = [
     "nptyping>=2.5.0",
     "torch==2.1.2+cpu",
     "torchvision==0.16.2+cpu",
+    "mlxtend>=0.23.1",
 ]
 readme = "README.md"
 requires-python = ">=3.10, <3.11"
