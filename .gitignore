@@ -7,3 +7,4 @@ nohup.out
 celeba/
 *.pt
 *.pth
+notebook/MNIST/
