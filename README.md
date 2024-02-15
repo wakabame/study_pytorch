@@ -25,7 +25,7 @@ jupyter notebook
 
 待てば大体大丈夫。ダウンロードがどうしてもうまくいかないとき
 
-```0B7EVK8r0v71pZjFTYXZWM3FlRnM
+``` sh
 FILE_ID=0B7EVK8r0v71pZjFTYXZWM3FlRnM
 FILE_NAME=img_align_celeba.zip
 html=`curl -c ./cookie -s -L "https://drive.google.com/uc?export=download&id=${FILE_ID}"`
